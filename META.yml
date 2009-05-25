@@ -1,6 +1,6 @@
 ---
 name: Devel-Ditto
-version: 0.01
+version: 0.02
 author:
   - 'Andy Armstrong <andy@hexten.net>'
 abstract: Identify where print output comes from
@@ -15,7 +15,7 @@ requires:
 provides:
   Devel::Ditto:
     file: lib/Devel/Ditto.pm
-    version: 0.01
+    version: 0.02
 generated_by: Module::Build version 0.33
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html

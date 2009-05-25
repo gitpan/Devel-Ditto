@@ -8,11 +8,11 @@ Devel::Ditto - Identify where print output comes from
 
 =head1 VERSION
 
-This document describes Devel::Ditto version 0.01
+This document describes Devel::Ditto version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -71,18 +71,15 @@ sub TIEHANDLE {
   bless \%params, $class;
 }
 
-{
+sub _caller {
+  my $self  = shift;
   my $depth = 0;
-
-  sub _caller {
-    my $self = shift;
-    while () {
-      my ( $pkg, $file, $line ) = caller $depth;
-      return unless defined $pkg;
-      return ( $pkg, $file, $line )
-       unless $pkg->isa( __PACKAGE__ );
-      $depth++;
-    }
+  while () {
+    my ( $pkg, $file, $line ) = caller $depth;
+    return unless defined $pkg;
+    return ( $pkg, $file, $line )
+     unless $pkg->isa( __PACKAGE__ );
+    $depth++;
   }
 }
 
