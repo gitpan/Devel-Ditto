@@ -8,11 +8,11 @@ Devel::Ditto - Identify where print output comes from
 
 =head1 VERSION
 
-This document describes Devel::Ditto version 0.05
+This document describes Devel::Ditto version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 SYNOPSIS
 
@@ -46,6 +46,8 @@ open( REALSTDERR, ">&STDERR" );
 
 use warnings;
 use strict;
+
+use File::Spec;
 
 sub import {
   my $class  = shift;
@@ -86,6 +88,7 @@ sub _caller {
 sub _logbit {
   my $self = shift;
   my ( $pkg, $file, $line ) = $self->_caller();
+  $file = File::Spec->canonpath($file);
   return "[$pkg, $file, $line] ";
 }
 
